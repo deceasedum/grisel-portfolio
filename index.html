@@ -330,17 +330,22 @@ body{background:#09090f;color:white;overflow-x:hidden;}
       Open to collaboration, research partnerships, and creative endeavors. Feel free to reach out through any of the channels below.
     </p>
     <div class="flex justify-center gap-5 flex-wrap" data-aos="fade-up">
-      <a href="https://instagram.com/griseldahaifa" target="_blank" class="btn-main">Instagram</a>
-      <button onclick="revealContact(this, '+62 XXXXXXX')" class="btn-outline transition-all duration-300">
-        Phone
-      </button>
-      <button onclick="revealContact(this, 'XXXXX@gmail.com')" class="btn-outline transition-all duration-300">
-        Email
-      </button>
-      <a href="https://linkedin.com/in/griselda-haifa" target="_blank" class="btn-outline">LinkedIn</a>
+      <a href="https://instagram.com/XXXXX" target="_blank" class="btn-main">Instagram</a>
+      <button class="btn-outline" onclick="showPopup('phone')">Phone</button>
+      <button class="btn-outline" onclick="showPopup('email')">Email</button>
+      <a href="https://linkedin.com/in/XXXXX" target="_blank" class="btn-outline">LinkedIn</a>
     </div>
   </div>
 </section>
+
+<!-- INFO POPUP -->
+<div id="infoPopup" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);backdrop-filter:blur(8px);z-index:2000;align-items:center;justify-content:center;">
+  <div class="glass" style="border-radius:24px;padding:40px 48px;text-align:center;position:relative;min-width:300px;">
+    <button onclick="closePopup()" style="position:absolute;top:16px;right:20px;background:none;border:none;color:white;font-size:1.3rem;cursor:pointer;opacity:0.5;">✕</button>
+    <p id="popupLabel" style="font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;color:#f9a8d4;margin-bottom:12px;"></p>
+    <p id="popupValue" style="font-size:1.4rem;font-weight:600;color:white;"></p>
+  </div>
+</div>
 
 <!-- FOOTER -->
 <footer class="py-10 border-t border-white/10 text-center text-gray-500">
@@ -419,5 +424,29 @@ document.getElementById('orgModal').addEventListener('click', function(e){
   if(e.target === this) closeOrg();
 });
 </script>
+
+<script>
+const contactInfo = {
+  phone: { label: 'Phone Number', value: '+62 XXX XXXX XXXX' },
+  email: { label: 'Email Address', value: 'XXXXX@gmail.com' }
+};
+
+function showPopup(type) {
+  const d = contactInfo[type];
+  document.getElementById('popupLabel').textContent = d.label;
+  document.getElementById('popupValue').textContent = d.value;
+  const popup = document.getElementById('infoPopup');
+  popup.style.display = 'flex';
+}
+
+function closePopup() {
+  document.getElementById('infoPopup').style.display = 'none';
+}
+
+document.getElementById('infoPopup').addEventListener('click', function(e) {
+  if (e.target === this) closePopup();
+});
+</script>
+
 </body>
 </html>
